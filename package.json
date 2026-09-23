@@ -1,0 +1,62 @@
+{
+  "name": "@mrcs/toastkit",
+  "version": "0.1.0",
+  "description": "Sonner-style toasts for vanilla JavaScript. CSS is the API.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./toastkit.css": "./dist/toastkit.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc -p tsconfig.build.json && node scripts/copy.mjs",
+    "size": "node scripts/size.mjs",
+    "test": "vitest run",
+    "check": "npm run build && npm run size && npm test",
+    "prepublishOnly": "npm run check"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmrcs/toastkit.git"
+  },
+  "homepage": "https://nmrcs.github.io/toastkit/",
+  "bugs": "https://github.com/nmrcs/toastkit/issues",
+  "keywords": [
+    "toast",
+    "toasts",
+    "notification",
+    "notifications",
+    "snackbar",
+    "vanilla",
+    "typescript",
+    "zero-dependency",
+    "accessible",
+    "css-variables"
+  ],
+  "author": "Nikita MRCS (https://github.com/nmrcs)",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+demo/toastkit.js
+demo/toastkit.css
+demo/index.d.ts
+demo/size.json
+.DS_Store

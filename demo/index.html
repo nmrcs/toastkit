@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>toastkit — sonner-style toasts for vanilla JavaScript</title>
+    <meta name="description" content="Zero-dependency toasts with a sonner-style API. Every visual decision is a CSS custom property. Try positions, themes and edit the stylesheet live." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%23111%27/%3E%3Crect x=%277%27 y=%2711%27 width=%2718%27 height=%2710%27 rx=%273%27 fill=%27%23fff%27/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./toastkit.css" />
+    <link rel="stylesheet" href="./demo.css" />
+    <style id="live-css"></style>
+  </head>
+  <body>
+    <header class="hero">
+      <h1>toastkit</h1>
+      <p class="tagline">Sonner-style toasts for vanilla JavaScript. CSS is the API.</p>
+      <p class="meta">
+        <code>npm i @mrcs/toastkit</code>
+        <span id="size"></span>
+        <a href="https://github.com/nmrcs/toastkit">GitHub</a>
+        <a href="https://www.npmjs.com/package/@mrcs/toastkit">npm</a>
+      </p>
+    </header>
+
+    <main class="grid">
+      <section class="panel" aria-labelledby="h-settings">
+        <h2 id="h-settings">Settings</h2>
+        <fieldset>
+          <legend>Position</legend>
+          <div class="positions" id="positions"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Theme</legend>
+          <div class="row">
+            <label><input type="radio" name="theme" value="auto" checked /> auto</label>
+            <label><input type="radio" name="theme" value="light" /> light</label>
+            <label><input type="radio" name="theme" value="dark" /> dark</label>
+            <label><input type="radio" name="theme" value="mono" /> mono <small>(defined in demo.css)</small></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Behaviour</legend>
+          <div class="row">
+            <label>duration <input type="number" id="duration" value="4000" min="500" step="500" /> ms</label>
+            <label>max <input type="number" id="max" value="5" min="1" max="10" /></label>
+            <label><input type="checkbox" id="pause" checked /> pause on hover</label>
+            <label><input type="checkbox" id="swipe" checked /> swipe to dismiss</label>
+            <label>stack <select id="stack"><option value="expand">expand</option><option value="collapse">collapse</option></select></label>
+          </div>
+        </fieldset>
+      </section>
+
+      <section class="panel" aria-labelledby="h-variants">
+        <h2 id="h-variants">Variants</h2>
+        <div class="buttons" id="variants">
+          <button data-variant="text">Text</button>
+          <button data-variant="description">With description</button>
+          <button data-variant="success">Success</button>
+          <button data-variant="error">Error</button>
+          <button data-variant="warning">Warning</button>
+          <button data-variant="info">Info</button>
+          <button data-variant="promise">Loading → promise</button>
+          <button data-variant="action">With action</button>
+          <button data-variant="sticky">Sticky</button>
+          <button data-variant="custom">Custom element</button>
+          <button data-variant="dismiss" class="secondary">Dismiss all</button>
+        </div>
+        <h3>Last call</h3>
+        <pre id="code"><code>import { toast } from '@mrcs/toastkit'
+import '@mrcs/toastkit/toastkit.css'</code></pre>
+      </section>
+
+      <section class="panel wide" aria-labelledby="h-css">
+        <h2 id="h-css">CSS, live</h2>
+        <p>This is the library stylesheet's variable block. Edit it and the toasts on screen follow, in every theme, until you press Reset. Nothing is injected from JavaScript, so the same file is your theme in production.</p>
+        <div class="editor">
+          <pre id="css-hl" aria-hidden="true"></pre>
+          <textarea id="css" spellcheck="false" rows="18" aria-label="Library CSS, editable"></textarea>
+        </div>
+        <div class="row">
+          <button id="reset" class="secondary">Reset</button>
+          <button id="copy" class="secondary">Copy CSS</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      Built solo by Nikita MRCS — <a href="https://github.com/nmrcs">@nmrcs</a>. MIT.
+    </footer>
+
+    <script type="module" src="./demo.js"></script>
+  </body>
+</html>

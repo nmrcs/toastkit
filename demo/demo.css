@@ -1,0 +1,79 @@
+:root {
+  color-scheme: light dark;
+  --bg: #fafafa;
+  --fg: #111;
+  --muted: #666;
+  --line: #e2e2e2;
+  --panel: #fff;
+  --accent: #111;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0f0f10; --fg: #f2f2f2; --muted: #a0a0a5; --line: #2a2a2d; --panel: #171719; --accent: #f2f2f2; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: 0 16px 48px; background: var(--bg); color: var(--fg); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color: inherit; }
+code, pre, textarea { font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.hero { max-width: 1040px; margin: 0 auto; padding: 48px 0 24px; }
+.hero h1 { margin: 0; font-size: 40px; letter-spacing: -0.02em; }
+.tagline { margin: 6px 0 14px; font-size: 18px; color: var(--muted); }
+.meta { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 0; }
+.meta code { padding: 4px 8px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+.grid { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+.panel { min-width: 0; padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+.panel.wide { grid-column: 1 / -1; }
+.panel h2 { margin: 0 0 12px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.panel h3 { margin: 20px 0 8px; font-size: 14px; }
+fieldset { margin: 0 0 14px; padding: 0; border: 0; }
+legend { padding: 0; margin-bottom: 6px; font-weight: 600; }
+.row { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+label { display: inline-flex; gap: 6px; align-items: center; }
+select { padding: 4px 6px; font: inherit; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: inherit; }
+input[type="number"] { width: 5.5em; padding: 4px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: inherit; }
+.positions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-width: 320px; }
+.positions button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+.buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+button { padding: 8px 12px; font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
+button:hover { border-color: var(--fg); }
+button.secondary { color: var(--muted); }
+pre { margin: 0; padding: 12px; overflow: auto; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* CSS editor: a highlighted layer under a transparent textarea, same metrics. */
+.editor { position: relative; margin-bottom: 10px; }
+.editor pre, .editor textarea { margin: 0; padding: 12px; font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; overflow-wrap: anywhere; tab-size: 2; border: 1px solid var(--line); border-radius: 8px; }
+.editor pre { position: absolute; inset: 0; overflow: hidden; pointer-events: none; background: var(--bg); color: var(--fg); }
+.editor textarea { position: relative; display: block; width: 100%; resize: vertical; background: transparent; color: transparent; caret-color: var(--fg); }
+.editor textarea::selection { background: rgba(120, 140, 255, 0.35); }
+.editor textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.t-kw { color: #c678dd; }
+.t-str { color: #98c379; }
+.t-num { color: #d19a66; }
+.t-fn { color: #61afef; }
+.t-com { color: var(--muted); font-style: italic; }
+.t-prop { color: #56b6c2; }
+.t-sel { color: #e5c07b; }
+.t-pun { color: var(--muted); }
+@media (prefers-color-scheme: light) {
+  .t-kw { color: #a626a4; } .t-str { color: #50a14f; } .t-num { color: #986801; } .t-fn { color: #4078f2; } .t-prop { color: #0184bc; } .t-sel { color: #c18401; }
+}
+.foot { max-width: 1040px; margin: 32px auto 0; color: var(--muted); font-size: 14px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } .hero { padding-top: 28px; } .hero h1 { font-size: 32px; } }
+
+/* A third theme that the library knows nothing about: only variables. */
+.tk[data-theme="mono"] {
+  --tk-bg: #000;
+  --tk-fg: #fff;
+  --tk-muted: #9a9a9a;
+  --tk-border: #fff;
+  --tk-shadow: none;
+  --tk-radius: 0;
+  --tk-font: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --tk-success: #fff;
+  --tk-error: #fff;
+  --tk-warning: #fff;
+  --tk-info: #fff;
+  --tk-action-bg: #fff;
+  --tk-action-fg: #000;
+}
+.tk[data-theme="mono"] .tk-icon::before { color: #000; }

@@ -18,7 +18,10 @@ code, pre, textarea { font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monosp
 .hero h1 { margin: 0; font-size: 40px; letter-spacing: -0.02em; }
 .tagline { margin: 6px 0 14px; font-size: 18px; color: var(--muted); }
 .meta { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 0; }
-.meta code { padding: 4px 8px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+.chip { display: inline-flex; align-items: center; padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--fg); text-decoration: none; font: inherit; font-weight: 600; cursor: pointer; }
+.chip.install { padding: 4px 8px; font-weight: 400; }
+.chip:hover { border-color: var(--fg); }
+.chip .count:not(:empty)::before { content: "\00b7"; margin: 0 6px; color: var(--muted); }
 .grid { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
 .panel { min-width: 0; padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
 .panel.wide { grid-column: 1 / -1; }

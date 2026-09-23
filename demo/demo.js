@@ -138,4 +138,32 @@ fetch('./size.json')
   })
   .catch(() => {})
 
+// Install command: click copies it.
+$('#install').addEventListener('click', () => {
+  navigator.clipboard?.writeText('npm i @mrcs/toastkit').then(() => toast.success('Copied', { description: 'npm i @mrcs/toastkit' }))
+})
+
+const compact = new Intl.NumberFormat('en', { notation: 'compact' })
+
+// Star count from the public GitHub API. Unauthenticated, 60 requests an
+// hour per IP; when that fails, or the count is zero, the link shows no number.
+fetch('https://api.github.com/repos/nmrcs/toastkit')
+  .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+  .then(({ stargazers_count }) => {
+    if (stargazers_count > 0) $('#stars').textContent = compact.format(stargazers_count)
+  })
+  .catch(() => {})
+
+// Version and weekly downloads from the npm registry. Both endpoints answer
+// 404 until the package is published, and the chip then stays plain "npm".
+const json = (url) => fetch(url).then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+Promise.all([
+  json('https://registry.npmjs.org/@mrcs/toastkit/latest'),
+  json('https://api.npmjs.org/downloads/point/last-week/@mrcs/toastkit').catch(() => ({ downloads: 0 })),
+])
+  .then(([{ version }, { downloads }]) => {
+    $('#npm').textContent = downloads > 0 ? `v${version} · ${compact.format(downloads)}/week` : `v${version}`
+  })
+  .catch(() => {})
+
 show('text')

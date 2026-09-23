@@ -15,10 +15,12 @@
       <h1>toastkit</h1>
       <p class="tagline">Sonner-style toasts for vanilla JavaScript. CSS is the API.</p>
       <p class="meta">
-        <code>npm i @mrcs/toastkit</code>
+        <button type="button" class="chip install" id="install" title="Copy to clipboard"><code>npm i @mrcs/toastkit</code></button>
+        <a class="chip" href="https://github.com/nmrcs/toastkit" aria-label="Star toastkit on GitHub">
+          <span aria-hidden="true">&#9733;&nbsp;</span>Star on GitHub<span class="count" id="stars"></span>
+        </a>
+        <a class="chip" href="https://www.npmjs.com/package/@mrcs/toastkit">npm<span class="count" id="npm"></span></a>
         <span id="size"></span>
-        <a href="https://github.com/nmrcs/toastkit">GitHub</a>
-        <a href="https://www.npmjs.com/package/@mrcs/toastkit">npm</a>
       </p>
     </header>
 
@@ -77,7 +79,7 @@ import '@mrcs/toastkit/toastkit.css'</code></pre>
           <pre id="css-hl" aria-hidden="true"></pre>
           <textarea id="css" spellcheck="false" rows="18" aria-label="Library CSS, editable"></textarea>
         </div>
-        <div class="row">
+        <div class="buttons">
           <button id="reset" class="secondary">Reset</button>
           <button id="copy" class="secondary">Copy CSS</button>
         </div>

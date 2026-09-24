@@ -19,7 +19,14 @@ code, pre, textarea { font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monosp
 .tagline { margin: 6px 0 14px; font-size: 18px; color: var(--muted); }
 .meta { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 0; }
 .chip { display: inline-flex; align-items: center; padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--fg); text-decoration: none; font: inherit; font-weight: 600; cursor: pointer; }
-.chip.install { padding: 4px 8px; font-weight: 400; }
+.chip.install code { font-size: 0.93em; font-weight: 500; }
+.icon { width: 15px; height: 15px; fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chip .icon { margin-left: 8px; }
+.snippet { position: relative; cursor: pointer; }
+.snippet pre { padding-right: 40px; }
+.snippet .copy { position: absolute; top: 6px; right: 6px; padding: 6px; line-height: 0; background: none; border: 0; }
+.snippet:hover pre { border-color: var(--fg); }
+.snippet:hover .icon { stroke: var(--fg); }
 .chip:hover { border-color: var(--fg); }
 .chip .count:not(:empty)::before { content: "\00b7"; margin: 0 6px; color: var(--muted); }
 .grid { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }

@@ -136,6 +136,16 @@ describe('toast', () => {
     expect(toasts()[0]!.querySelector('.tk-title')).toBeNull()
   })
 
+  it('puts a custom icon into the icon slot', () => {
+    toast('hi', { icon: '👋' })
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as unknown as HTMLElement
+    toast.success('done', { icon: svg })
+    const [a, b] = toasts()
+    expect(a!.querySelector('.tk-icon')!.textContent).toBe('👋')
+    expect(b!.querySelector('.tk-icon svg')).not.toBeNull()
+    expect(b!.dataset['kind']).toBe('success')
+  })
+
   it('updates a toast in place by id', () => {
     const id = toast('one', { id: 'fixed' })
     expect(id).toBe('fixed')

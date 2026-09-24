@@ -13,14 +13,15 @@
   <body>
     <header class="hero">
       <h1>toastkit</h1>
-      <p class="tagline">Sonner-style toasts for vanilla JavaScript. CSS is the API.</p>
+      <p class="tagline">Sonner-style toasts for vanilla JavaScript. CSS is the API. <span id="size"></span></p>
       <p class="meta">
-        <button type="button" class="chip install" id="install" title="Copy to clipboard"><code>npm i @mrcs/toastkit</code></button>
+        <button type="button" class="chip install" id="install" aria-label="Copy install command: npm i @mrcs/toastkit"><code>npm i @mrcs/toastkit</code>
+          <svg class="icon" id="install-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" /></svg>
+        </button>
         <a class="chip" href="https://github.com/nmrcs/toastkit" aria-label="Star toastkit on GitHub">
           <span aria-hidden="true">&#9733;&nbsp;</span>Star on GitHub<span class="count" id="stars"></span>
         </a>
         <a class="chip" href="https://www.npmjs.com/package/@mrcs/toastkit">npm<span class="count" id="npm"></span></a>
-        <span id="size"></span>
       </p>
     </header>
 
@@ -65,11 +66,15 @@
           <button data-variant="action">With action</button>
           <button data-variant="sticky">Sticky</button>
           <button data-variant="custom">Custom element</button>
+          <button data-variant="emoji">Emoji icon</button>
           <button data-variant="dismiss" class="secondary">Dismiss all</button>
         </div>
         <h3>Last call</h3>
-        <pre id="code"><code>import { toast } from '@mrcs/toastkit'
+        <div class="snippet" id="snippet" title="Click to copy">
+          <pre id="code"><code>import { toast } from '@mrcs/toastkit'
 import '@mrcs/toastkit/toastkit.css'</code></pre>
+          <button type="button" class="copy" aria-label="Copy code"><svg class="icon" id="code-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" /></svg></button>
+        </div>
       </section>
 
       <section class="panel wide" aria-labelledby="h-css">

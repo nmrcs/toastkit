@@ -1,15 +1,15 @@
 # toastkit
 
-Sonner-style toasts for vanilla JavaScript. CSS is the API.
+Sonner-style toasts for vanilla JavaScript. CSS is the API. 2.7 KB JS + 2.0 KB CSS gzip, zero dependencies.
 
-![toastkit demo: variants, promise toast, undo action, positions, themes, collapsed stack, swipe to dismiss and live CSS editing](/docs/promo.gif)
-
-- `toast()`, `toast.promise()`, action buttons, a capped stack that can collapse behind the newest toast, swipe to dismiss, pause on hover — the API you know from sonner, without React.
+- `toast()`, `toast.promise()`, action buttons, your own icons, a capped stack that can collapse behind the newest toast, swipe to dismiss, pause on hover — the API you know from sonner, without React.
 - Not one line of CSS is injected from JavaScript. The whole look is one stylesheet of `--tk-*` custom properties. Your theme is a CSS file, not a config object.
 - Accessible by default: a labelled region, `role="status"` / `role="alert"` with the matching `aria-live`, real buttons, Escape to dismiss, `prefers-reduced-motion` respected.
-- Zero runtime dependencies. ESM, TypeScript types included. 2.7 KB JS + 1.8 KB CSS gzipped, and the build fails if that grows past 3 KB + 2 KB.
+- Zero runtime dependencies. ESM, TypeScript types included. 2.7 KB JS + 2.0 KB CSS gzipped, and the build fails if that grows past 3 KB + 2 KB.
 
 Demo and live CSS editor: https://nmrcs.github.io/toastkit/
+
+![toastkit demo: variants, promise toast, undo action, positions, themes, collapsed stack, swipe to dismiss and live CSS editing](/docs/promo.gif)
 
 ## Install
 
@@ -61,6 +61,9 @@ toast('Message deleted', { action: { label: 'Undo', onClick: () => restore() } }
 // Stays until dismissed.
 toast.info('Stays until you close it', { duration: Infinity })
 
+// Your own icon on the left: an emoji, text or an element such as an inline SVG.
+toast('Deploy is live', { icon: '🚀' })
+
 // Your own content: an element or a function returning one.
 toast('', { content: buildElement() })
 
@@ -103,8 +106,9 @@ Also `toast.success`, `toast.error`, `toast.info`, `toast.warning`, `toast.loadi
 | `onDismiss`   | `(id) => void`                                            | after the toast is gone                                    |
 | `className`   | `string`                                                  | extra class on the toast element                           |
 | `content`     | `string \| HTMLElement \| () => HTMLElement`              | replaces the title/description block                       |
+| `icon`        | `string \| HTMLElement`                                   | replaces the kind's icon, shown for any kind               |
 
-Strings are rendered through `textContent`, never as HTML. Use `content` with an element when you need markup.
+Strings are rendered through `textContent`, never as HTML. Use `content` or `icon` with an element when you need markup.
 
 ### `toast.promise(promise, messages, options?)`
 
@@ -160,7 +164,7 @@ Override them anywhere after the stylesheet, or define a theme of your own — t
 mount({ theme: 'brand' })
 ```
 
-Hooks for deeper changes: `.tk` (region, `data-position`, `data-theme`, `data-stack`), `.tk-toast` (`data-kind`, `data-state="open|closing"`, `data-swiping` while dragged), `.tk-icon`, `.tk-body`, `.tk-title`, `.tk-desc`, `.tk-action`, `.tk-close`. Animations are `tk-in`, `tk-out` and `tk-spin`; a swiped-away toast leaves along its drag direction through `--tk-out`. `prefers-reduced-motion: reduce` turns all of it off.
+Hooks for deeper changes: `.tk` (region, `data-position`, `data-theme`, `data-stack`), `.tk-toast` (`data-kind`, `data-state="open|closing"`, `data-swiping` while dragged), `.tk-icon` (not `:empty` when it holds the `icon` option), `.tk-body`, `.tk-title`, `.tk-desc`, `.tk-action`, `.tk-close`. Animations are `tk-in`, `tk-out` and `tk-spin`; a swiped-away toast leaves along its drag direction through `--tk-out`. `prefers-reduced-motion: reduce` turns all of it off.
 
 The collapsed stack is CSS only: with `stack: 'collapse'` the region becomes a grid, the two toasts behind the newest are scaled and offset, older ones are hidden, and hover or focus expands the list. Tune it with `--tk-stack-offset` and `--tk-stack-scale`.
 
@@ -215,7 +219,7 @@ Vanilla toast libraries stopped moving around 2021–2022, and everything that e
 
 | Library     | Last release | Framework | Runtime deps | Size, gzip |
 | ----------- | ------------ | --------- | ------------ | ------- |
-| **toastkit** | **2026**    | **none**  | **0**        | **2.7 KB JS + 1.8 KB CSS, gzip** |
+| **toastkit** | **2026**    | **none**  | **0**        | **2.7 KB JS + 2.0 KB CSS, gzip** |
 | toastify-js | 2022-07      | none      | 0            | 2.1 KB  |
 | notyf       | 2021-06      | none      | 0            | 27.5 KB |
 | notiflix    | 2025-01      | none      | 0            | 16.5 KB |

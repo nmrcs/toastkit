@@ -43,6 +43,11 @@ $('#stack').addEventListener('change', (e) => {
 // Variants: each entry returns the code it ran, shown under "Last call".
 const fakeUpload = () => new Promise((resolve, reject) => setTimeout(() => (Math.random() < 0.7 ? resolve('report.pdf') : reject(new Error('network'))), 1800))
 const variants = {
+  // Shown once on page load, no button of its own.
+  welcome: () => {
+    toast('Welcome to toastkit', { icon: '👋', description: 'Pick a variant to try it.' })
+    return `toast('Welcome to toastkit', { icon: '👋', description: 'Pick a variant to try it.' })`
+  },
   text: () => {
     toast('Changes saved')
     return `toast('Changes saved')`
@@ -84,6 +89,10 @@ const variants = {
     el.innerHTML = '<strong>Build #4821</strong> passed in 42s · <a href="#">open log</a>'
     toast('', { content: el })
     return `const el = document.createElement('div')\nel.innerHTML = '<strong>Build #4821</strong> passed in 42s · <a href="#">open log</a>'\ntoast('', { content: el })`
+  },
+  emoji: () => {
+    toast('Deploy is live', { icon: '🚀', description: 'Any text or element works as the icon.' })
+    return `toast('Deploy is live', { icon: '🚀', description: 'Any text or element works as the icon.' })`
   },
   dismiss: () => {
     toast.dismiss()
@@ -134,14 +143,28 @@ $('#copy').addEventListener('click', () => navigator.clipboard?.writeText(css.va
 fetch('./size.json')
   .then((r) => r.json())
   .then(({ js, css: cssBytes }) => {
-    $('#size').textContent = `${(js / 1000).toFixed(1)} KB JS + ${(cssBytes / 1000).toFixed(1)} KB CSS gzip · zero dependencies`
+    $('#size').textContent = `${(js / 1000).toFixed(1)} KB JS + ${(cssBytes / 1000).toFixed(1)} KB CSS gzip, zero dependencies.`
   })
   .catch(() => {})
 
-// Install command: click copies it.
-$('#install').addEventListener('click', () => {
-  navigator.clipboard?.writeText('npm i @mrcs/toastkit').then(() => toast.success('Copied', { description: 'npm i @mrcs/toastkit' }))
-})
+// Click to copy: the icon turns into a check for a moment. A click that ends
+// a text selection is left alone, so the code can still be selected by hand.
+function copyOnClick(el, icon, text, done) {
+  const original = icon.innerHTML
+  let timer
+  el.addEventListener('click', () => {
+    const sel = getSelection()
+    if (String(sel) && el.contains(sel.anchorNode)) return
+    navigator.clipboard?.writeText(text()).then(() => {
+      icon.innerHTML = '<path d="M20 6 9 17l-5-5" />'
+      clearTimeout(timer)
+      timer = setTimeout(() => (icon.innerHTML = original), 1500)
+      done()
+    })
+  })
+}
+copyOnClick($('#install'), $('#install-icon'), () => 'npm i @mrcs/toastkit', () => toast.success('Copied', { description: 'npm i @mrcs/toastkit' }))
+copyOnClick($('#snippet'), $('#code-icon'), () => $('#code').textContent, () => toast.success('Code copied'))
 
 const compact = new Intl.NumberFormat('en', { notation: 'compact' })
 
@@ -166,4 +189,4 @@ Promise.all([
   })
   .catch(() => {})
 
-show('text')
+show('welcome')

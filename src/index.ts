@@ -44,6 +44,8 @@ export interface ToastOptions {
   className?: string
   /** Replaces the title/description block with your own content. */
   content?: Content
+  /** Your own icon on the left, in place of the kind's: text such as an emoji, or an element such as an inline SVG. */
+  icon?: string | HTMLElement
 }
 
 export interface MountOptions {
@@ -211,6 +213,7 @@ function build(id: string, title: string, o: ToastOptions): Node[] {
   const icon = document.createElement('span')
   icon.className = 'tk-icon'
   icon.setAttribute('aria-hidden', 'true')
+  if (o.icon !== undefined) icon.append(o.icon)
   nodes.push(icon)
 
   const body = document.createElement('div')

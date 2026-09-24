@@ -64,6 +64,7 @@
 .tk[data-position$="center"] { left: 50%; transform: translateX(-50%); }
 
 .tk-toast {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -79,6 +80,9 @@
   transition: transform 0.2s ease, opacity 0.2s ease;
   animation: tk-in var(--tk-duration) ease-out;
 }
+
+/* Hover bridge over the gap: the region ignores the pointer. */
+.tk-toast::after { content: ""; position: absolute; inset: 100% 0 auto; height: calc(var(--tk-gap) + 2px); }
 
 .tk-toast[data-swiping] { transition: none; cursor: grabbing; }
 
@@ -109,6 +113,9 @@
   border-top-color: var(--tk-fg);
   animation: tk-spin 0.8s linear infinite;
 }
+/* `icon` option: any kind, no badge. */
+.tk-toast .tk-icon:not(:empty) { display: block; width: auto; height: auto; line-height: 1; background: none; border: 0; animation: none; }
+.tk-toast .tk-icon:not(:empty)::before { content: none; }
 
 .tk-action,
 .tk-close {

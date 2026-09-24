@@ -1,6 +1,6 @@
 {
   "name": "@mrcs/toastkit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Sonner-style toasts for vanilla JavaScript. CSS is the API.",
   "type": "module",
   "main": "./dist/index.js",
